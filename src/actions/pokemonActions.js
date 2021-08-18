@@ -11,7 +11,9 @@ export const getSinglePokemon = (search) => async (dispatch) => {
   try {
     dispatch({ type: GET_POKEMON_REQUEST });
 
-    const { data } = await axios.get(`/api/v2/pokemon/${search}`);
+    const { data } = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${search}`
+    );
 
     dispatch({
       type: GET_POKEMON_SUCCESS,
@@ -26,7 +28,7 @@ export const getSinglePokemon = (search) => async (dispatch) => {
 };
 
 export const addToTeam = (id) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/v2/pokemon/${id}`);
+  const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
 
   dispatch({
     type: TEAM_ADD_POKEMON,
