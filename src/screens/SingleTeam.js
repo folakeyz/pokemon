@@ -56,6 +56,7 @@ const SingleTeam = ({ match, history }) => {
     if (!success) {
       history.push("/");
     }
+    // eslint-disable-next-line
   }, [dispatch, search, history]);
   return (
     <div>
