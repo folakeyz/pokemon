@@ -5,6 +5,9 @@ import {
   GET_POKEMON_REQUEST,
   TEAM_ADD_POKEMON,
   TEAM_REMOVE_POKEMON,
+  GET_ALL_POKEMON_SUCCESS,
+  GET_ALL_POKEMON_REQUEST,
+  GET_ALL_POKEMON_FAIL,
 } from "../constants/pokemonConstants";
 
 export const getSinglePokemon = (search) => async (dispatch) => {
@@ -49,4 +52,24 @@ export const removeFromTeam = (id) => (dispatch, getState) => {
   });
 
   localStorage.setItem("pokemons", JSON.stringify(getState().team.pokemons));
+};
+
+export const getPokemons = () => async (dispatch) => {
+  try {
+    dispatch({ type: GET_ALL_POKEMON_REQUEST });
+
+    const { data } = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon?limit=100`
+    );
+
+    dispatch({
+      type: GET_ALL_POKEMON_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_ALL_POKEMON_FAIL,
+      payload: error.response.data,
+    });
+  }
 };

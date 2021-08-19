@@ -1,11 +1,16 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { getSinglePokemon, TeamReducer } from "./reducers/pokemonReducers";
+import {
+  getAllPokemon,
+  getSinglePokemon,
+  TeamReducer,
+} from "./reducers/pokemonReducers";
 
 const reducer = combineReducers({
   getPokemon: getSinglePokemon,
   team: TeamReducer,
+  getAllPokemon: getAllPokemon,
 });
 
 const teamFromStorage = localStorage.getItem("pokemons")

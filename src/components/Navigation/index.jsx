@@ -27,6 +27,7 @@ const Navigation = () => {
                     <ul>
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/myteam">My Team</Link></li>
+                        <li><Link to="/pokemons">Pokemon</Link></li>
 
                     </ul>
 

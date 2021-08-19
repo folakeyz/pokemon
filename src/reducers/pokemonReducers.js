@@ -4,6 +4,9 @@ import {
   GET_POKEMON_REQUEST,
   GET_POKEMON_SUCCESS,
   TEAM_REMOVE_POKEMON,
+  GET_ALL_POKEMON_FAIL,
+  GET_ALL_POKEMON_REQUEST,
+  GET_ALL_POKEMON_SUCCESS,
 } from "../constants/pokemonConstants";
 
 export const getSinglePokemon = (
@@ -57,6 +60,23 @@ export const TeamReducer = (state = { pokemons: [] }, action) => {
         pokemons: state.pokemons.filter((x) => x.pokemon.id !== action.payload),
       };
 
+    default:
+      return state;
+  }
+};
+
+export const getAllPokemon = (state = { pokemons: [] }, action) => {
+  switch (action.type) {
+    case GET_ALL_POKEMON_REQUEST:
+      return { loading: true, pokemon: [] };
+    case GET_ALL_POKEMON_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        pokemons: action.payload.results,
+      };
+    case GET_ALL_POKEMON_FAIL:
+      return { loading: false, error: action.payload };
     default:
       return state;
   }
